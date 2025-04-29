@@ -51,7 +51,7 @@ const Index = () => {
   const overallProgress = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#DAC386]/10">
       <Header />
       
       <main className="container mx-auto px-4 py-8">
@@ -59,17 +59,17 @@ const Index = () => {
         <EventDetailsForm onSave={handleSaveEventDetails} />
         
         {/* Progress Tracking */}
-        <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+        <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-[#7F7354]/20">
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
-            <h2 className="font-semibold text-xl text-gray-800">Event Preparation Progress</h2>
-            <div className="text-sm text-gray-500">
+            <h2 className="font-semibold text-xl text-[#1D4334]">Event Preparation Progress</h2>
+            <div className="text-sm text-[#7F7354]">
               {completedItems} of {totalItems} tasks completed ({Math.round(overallProgress)}%)
             </div>
           </div>
           
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div 
-              className="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-500 ease-out" 
+              className="bg-gradient-to-r from-[#7F7354] to-[#1D4334] h-3 rounded-full transition-all duration-500 ease-out" 
               style={{ width: `${overallProgress}%` }}
             ></div>
           </div>
@@ -80,7 +80,7 @@ const Index = () => {
             variant="outline" 
             size="sm" 
             onClick={handleResetChecklist} 
-            className="gap-2"
+            className="gap-2 border-[#7F7354] text-[#1D4334] hover:bg-[#DAC386]/20"
           >
             <RefreshCw className="h-4 w-4" />
             Reset Checklist
@@ -98,9 +98,9 @@ const Index = () => {
         <PrintButton checklistData={checklistData} eventDetails={eventDetails} />
       </main>
       
-      <footer className="bg-gray-100 py-6 border-t border-gray-200">
-        <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Photo Booth Event Prep Checklist</p>
+      <footer className="bg-[#847C57]/10 py-6 border-t border-[#847C57]/20">
+        <div className="container mx-auto px-4 text-center text-[#1D4334] text-sm">
+          <p>© {new Date().getFullYear()} The Knightly Photo Booth</p>
           <p className="mt-1">Use this checklist before every event to ensure you're fully prepared.</p>
         </div>
       </footer>

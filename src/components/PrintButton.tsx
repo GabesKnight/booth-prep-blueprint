@@ -38,22 +38,23 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            color: #1D4334;
           }
           h1 {
             text-align: center;
-            color: #4f46e5;
+            color: #7F7354;
             margin-bottom: 10px;
           }
           h2 {
-            color: #4f46e5;
-            border-bottom: 1px solid #e5e7eb;
+            color: #1D4334;
+            border-bottom: 1px solid #DAC386;
             padding-bottom: 5px;
             margin-top: 25px;
           }
           .header-info {
             text-align: center;
             margin-bottom: 30px;
-            color: #6b7280;
+            color: #7F7354;
           }
           .checkbox-item {
             margin: 8px 0;
@@ -65,9 +66,11 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
             position: absolute;
             left: 0;
             font-size: 1.2em;
+            color: #7F7354;
           }
           .checked::before {
             content: "☑";
+            color: #1D4334;
           }
           .item-text {
             text-decoration: none;
@@ -90,8 +93,9 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
           .event-details {
             margin: 20px 0;
             padding: 15px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #DAC386;
             border-radius: 5px;
+            background-color: #DAC386/10;
           }
           .event-details p {
             margin: 5px 0;
@@ -100,14 +104,18 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
             margin-top: 30px;
             text-align: center;
             font-size: 0.8em;
-            color: #6b7280;
+            color: #847C57;
+          }
+          .company-name {
+            font-weight: bold;
+            color: #7F7354;
           }
         </style>
       </head>
       <body>
-        <h1>Photo Booth Event Prep Checklist</h1>
+        <h1>The Knightly Photo Booth</h1>
         <div class="header-info">
-          <p>Your comprehensive guide to photo booth event preparation</p>
+          <p>Event Preparation Checklist</p>
         </div>
         
         <div class="event-details">
@@ -141,6 +149,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
         
         <div class="footer">
           <p>Generated on ${new Date().toLocaleDateString()}</p>
+          <p class="company-name">The Knightly Photo Booth</p>
         </div>
       </body>
       </html>
@@ -160,7 +169,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
     <div className="flex gap-4 justify-center mt-4 mb-8">
       <Button 
         onClick={handlePrint}
-        className="gap-2 bg-indigo-600 hover:bg-indigo-700"
+        className="gap-2 bg-[#7F7354] hover:bg-[#1D4334] text-[#DAC386]"
       >
         <Printer className="h-4 w-4" />
         Print Checklist
@@ -168,7 +177,7 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
       <Button 
         onClick={handlePrint}
         variant="outline"
-        className="gap-2"
+        className="gap-2 border-[#7F7354] text-[#7F7354] hover:bg-[#DAC386]/20"
       >
         <Download className="h-4 w-4" />
         Export PDF
