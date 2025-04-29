@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from '@/components/Header';
 import ChecklistSection from '@/components/ChecklistSection';
 import PrintButton from '@/components/PrintButton';
+import EventDetailsForm, { EventDetails } from '@/components/EventDetailsForm';
 import { initialChecklistData } from '@/data/checklistData';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
@@ -10,6 +11,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 const Index = () => {
   const [checklistData, setChecklistData] = useState(initialChecklistData);
+  const [eventDetails, setEventDetails] = useState<EventDetails | undefined>(undefined);
   const { toast } = useToast();
 
   const handleToggleItem = (sectionId: string, itemId: string) => {
@@ -36,6 +38,10 @@ const Index = () => {
     });
   };
 
+  const handleSaveEventDetails = (details: EventDetails) => {
+    setEventDetails(details);
+  };
+
   // Calculate overall progress
   const totalItems = checklistData.reduce((acc, section) => acc + section.items.length, 0);
   const completedItems = checklistData.reduce(
@@ -49,6 +55,10 @@ const Index = () => {
       <Header />
       
       <main className="container mx-auto px-4 py-8">
+        {/* Event Details Form */}
+        <EventDetailsForm onSave={handleSaveEventDetails} />
+        
+        {/* Progress Tracking */}
         <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
             <h2 className="font-semibold text-xl text-gray-800">Event Preparation Progress</h2>
@@ -85,7 +95,7 @@ const Index = () => {
           />
         ))}
         
-        <PrintButton checklistData={checklistData} />
+        <PrintButton checklistData={checklistData} eventDetails={eventDetails} />
       </main>
       
       <footer className="bg-gray-100 py-6 border-t border-gray-200">

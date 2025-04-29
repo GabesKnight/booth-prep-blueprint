@@ -3,12 +3,14 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Printer, Download } from 'lucide-react';
 import { ChecklistSection } from '@/data/checklistData';
+import { EventDetails } from '@/components/EventDetailsForm';
 
 interface PrintButtonProps {
   checklistData: ChecklistSection[];
+  eventDetails?: EventDetails;
 }
 
-const PrintButton: React.FC<PrintButtonProps> = ({ checklistData }) => {
+const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }) => {
   const handlePrint = () => {
     const printWindow = window.open('', '_blank');
     if (!printWindow) {
@@ -16,6 +18,11 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData }) => {
       return;
     }
 
+    // Format event details
+    const formattedDate = eventDetails?.eventDate 
+      ? new Date(eventDetails.eventDate).toLocaleDateString() 
+      : "________________________________";
+    
     // Generate a printable version of the checklist
     const printContent = `
       <!DOCTYPE html>
@@ -104,11 +111,13 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData }) => {
         </div>
         
         <div class="event-details">
-          <p><strong>Event Name:</strong> ________________________________</p>
-          <p><strong>Date:</strong> ________________________________</p>
-          <p><strong>Venue:</strong> ________________________________</p>
-          <p><strong>Setup Time:</strong> ________________________________</p>
-          <p><strong>Event Coordinator Contact:</strong> ________________________________</p>
+          <p><strong>Event Name:</strong> ${eventDetails?.eventName || "________________________________"}</p>
+          <p><strong>Date:</strong> ${formattedDate}</p>
+          <p><strong>Event Time:</strong> ${eventDetails?.eventTime || "________________________________"}</p>
+          <p><strong>Setup Time:</strong> ${eventDetails?.setupTime || "________________________________"}</p>
+          <p><strong>Venue:</strong> ${eventDetails?.eventAddress || "________________________________"}</p>
+          <p><strong>Client Name:</strong> ${eventDetails?.clientName || "________________________________"}</p>
+          <p><strong>Client Phone:</strong> ${eventDetails?.clientPhone || "________________________________"}</p>
         </div>
         
         ${checklistData.map(section => `
