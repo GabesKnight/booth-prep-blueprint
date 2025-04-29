@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
@@ -38,6 +38,8 @@ interface EventDetailsFormProps {
 
 const EventDetailsForm: React.FC<EventDetailsFormProps> = ({ onSave }) => {
   const { toast } = useToast();
+  const [hasRequiredFields, setHasRequiredFields] = useState(false);
+  
   const form = useForm<EventDetails>({
     defaultValues: {
       eventName: "",
@@ -49,6 +51,20 @@ const EventDetailsForm: React.FC<EventDetailsFormProps> = ({ onSave }) => {
       clientPhone: "",
     }
   });
+
+  // Watch for changes in the required fields
+  const eventName = form.watch("eventName");
+  const eventDate = form.watch("eventDate");
+  const eventTime = form.watch("eventTime");
+  
+  // Check if required fields have values
+  useEffect(() => {
+    if (eventName && eventDate && eventTime) {
+      setHasRequiredFields(true);
+    } else {
+      setHasRequiredFields(false);
+    }
+  }, [eventName, eventDate, eventTime]);
 
   const calculateSetupTime = (eventTime: string): string => {
     if (!eventTime) return "";
@@ -248,9 +264,11 @@ const EventDetailsForm: React.FC<EventDetailsFormProps> = ({ onSave }) => {
             )}
           />
 
-          <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700">
-            Save Event Details
-          </Button>
+          {hasRequiredFields && (
+            <Button type="submit" className="bg-brand-darkGreen hover:bg-brand-darkGreen/90 text-brand-gold">
+              Save Event Details
+            </Button>
+          )}
         </form>
       </Form>
     </div>

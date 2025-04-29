@@ -34,38 +34,42 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
         <style>
           body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.4;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             color: #1D4334;
+            font-size: 11px;
           }
           h1 {
             text-align: center;
             color: #7F7354;
             margin-bottom: 10px;
+            font-size: 18px;
           }
           h2 {
             color: #1D4334;
             border-bottom: 1px solid #DAC386;
             padding-bottom: 5px;
-            margin-top: 25px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
           }
           .header-info {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             color: #7F7354;
           }
           .checkbox-item {
-            margin: 8px 0;
-            padding-left: 30px;
+            margin: 4px 0;
+            padding-left: 20px;
             position: relative;
           }
           .checkbox-item::before {
             content: "☐";
             position: absolute;
             left: 0;
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: #7F7354;
           }
           .checked::before {
@@ -77,12 +81,18 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
           }
           .section-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
           }
           @media print {
             body {
-              font-size: 12px;
+              font-size: 11px;
+            }
+            h1 {
+              font-size: 18px;
+            }
+            h2 {
+              font-size: 14px;
             }
           }
           @media (max-width: 600px) {
@@ -91,17 +101,17 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
             }
           }
           .event-details {
-            margin: 20px 0;
-            padding: 15px;
+            margin: 15px 0;
+            padding: 10px;
             border: 1px solid #DAC386;
             border-radius: 5px;
             background-color: #DAC386/10;
           }
           .event-details p {
-            margin: 5px 0;
+            margin: 3px 0;
           }
           .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: center;
             font-size: 0.8em;
             color: #847C57;
@@ -109,6 +119,13 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
           .company-name {
             font-weight: bold;
             color: #7F7354;
+          }
+          .reminder-box {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px dashed #7F7354;
+            background-color: #DAC386/10;
+            text-align: center;
           }
         </style>
       </head>
@@ -143,8 +160,10 @@ const PrintButton: React.FC<PrintButtonProps> = ({ checklistData, eventDetails }
           <p><strong>Additional Notes:</strong></p>
           <p>________________________________________________</p>
           <p>________________________________________________</p>
-          <p>________________________________________________</p>
-          <p>________________________________________________</p>
+        </div>
+        
+        <div class="reminder-box">
+          <p><strong>REMINDER:</strong> Review all items before leaving for the event. Incomplete items could impact your event's success!</p>
         </div>
         
         <div class="footer">
