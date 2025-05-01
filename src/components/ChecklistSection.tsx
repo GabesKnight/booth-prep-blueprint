@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChecklistSection as ChecklistSectionType } from '@/data/checklistData';
 import ChecklistItem from './ChecklistItem';
+import { Progress } from '@/components/ui/progress';
 
 interface ChecklistSectionProps {
   section: ChecklistSectionType;
@@ -23,12 +24,7 @@ const ChecklistSection: React.FC<ChecklistSectionProps> = ({ section, onToggleIt
             {completedItems}/{totalItems}
           </span>
         </CardTitle>
-        <div className="w-full bg-gray-200 rounded-full h-2.5">
-          <div 
-            className="bg-indigo-600 h-2.5 rounded-full transition-all duration-300 ease-in-out" 
-            style={{ width: `${progressPercentage}%` }}
-          ></div>
-        </div>
+        <Progress value={progressPercentage} className="h-2.5" />
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
